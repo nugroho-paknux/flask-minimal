@@ -1,63 +1,98 @@
 # flask-minimal
 
-A minimal Flask starter project designed to help you quickly set up a clean, simple, and efficient web application. This project is structured to keep things lightweight and focuses on productivity, with all your code contained in a single file (`app.py`), along with basic templates and static assets.
+Proyek starter Flask minimal yang dirancang untuk membantu Anda dengan cepat membuat aplikasi web yang bersih, sederhana, dan efisien. Proyek ini dibuat ringan dan berfokus pada produktivitas, dengan seluruh kode berada dalam satu file (`app.py`), serta dilengkapi dengan template dasar dan aset statis.
 
+## Fitur
 
-## Features
-- Single-file Flask application (`app.py`) to maximize productivity and simplicity.
-- Basic HTML template structure with minimal styling and JavaScript.
-- Simple and intuitive project setup with no unnecessary complexity.
-- Easily customizable for rapid development of web applications.
+- Aplikasi Flask dalam satu file (`app.py`) untuk memaksimalkan kesederhanaan dan produktivitas.
+- Struktur template HTML dasar dengan styling dan JavaScript minimal.
+- Pengaturan proyek yang sederhana dan intuitif, tanpa kompleksitas berlebihan.
+- Mudah dikustomisasi untuk pengembangan aplikasi web secara cepat.
 
-## Preparation
+## Persiapan
+
 ```bash
 sudo apt update
 sudo apt install python3 python3-venv python3-pip -y
-```
+````
 
-## Installation
+## Instalasi
 
-1. Clone the repository:
+1. Clone repositori:
+
    ```bash
    git clone https://github.com/yourusername/flask-minimal.git
    cd flask-minimal
    ```
 
-2. Create a virtual environment (recommended):
+2. Buat virtual environment (disarankan):
+
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
 
-3. Install the required dependencies:
+3. Instal dependensi:
+
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Run the app:
+4. Jalankan aplikasi:
+
    ```bash
    python app.py
    ```
 
-The Flask app will start, and you can view it by navigating to http://localhost:5000 in your browser.
+Aplikasi Flask akan berjalan, dan Anda dapat mengaksesnya melalui browser di alamat:
+[http://localhost:5000](http://localhost:5000)
 
-## Usage
+## Menjalankan Otomatis Setelah Reboot
 
-This starter project is ready to be used as a foundation for building web applications. The app.py file contains all the Flask routes and logic, making it simple to expand and customize. You can add more templates, routes, or static files as needed.
+Agar aplikasi Flask dapat berjalan otomatis setiap kali server dinyalakan ulang (reboot), Anda bisa menggunakan cron `@reboot`.
 
-## Customization
-You can easily modify:
+### Langkah-langkah:
 
- - The HTML structure in `templates/index.html`
- - The styling in `static/style.css`
- - The interactivity in `static/script.js`
+1. Buka crontab dengan perintah:
 
-Feel free to update the app.py file to add your routes or any additional logic to fit your needs.
+   ```bash
+   crontab -e
+   ```
 
-## License
-This project is licensed under the MIT License.
+2. Tambahkan baris berikut di bagian paling bawah (ganti path sesuai lokasi folder proyek Anda):
 
-## Contributing
-Feel free to fork this repository and create pull requests if you have improvements or bug fixes. If you have any suggestions, open an issue, and we’ll discuss it!
+   ```bash
+   @reboot /bin/bash -c 'cd /home/ubuntu/flask-minimal && source venv/bin/activate && python app.py'
+   ```
 
-This project is built with simplicity and efficiency in mind, perfect for quickly starting small web apps or prototypes with minimal overhead.
+   > Gantilah `/home/ubuntu/flask-minimal` dengan path direktori Anda, dan pastikan nama user serta struktur venv sesuai.
+
+3. Simpan dan keluar dari editor.
+
+Setelah ini, aplikasi Flask Anda akan otomatis dijalankan setiap kali server direboot, tanpa perlu mengetik ulang perintah aktivasi environment dan menjalankan `app.py` secara manual.
+
+## Penggunaan
+
+Proyek ini siap digunakan sebagai fondasi untuk membangun aplikasi web. File `app.py` sudah berisi semua rute dan logika dasar Flask, sehingga mudah untuk dikembangkan dan disesuaikan. Anda dapat menambahkan lebih banyak template, rute, atau file statis sesuai kebutuhan.
+
+## Kustomisasi
+
+Anda dapat dengan mudah mengubah:
+
+* Struktur HTML di `templates/index.html`
+* Tampilan CSS di `static/style.css`
+* Interaktivitas JavaScript di `static/script.js`
+
+Silakan modifikasi file `app.py` untuk menambahkan rute atau logika tambahan sesuai kebutuhan Anda.
+
+## Lisensi
+
+Proyek ini dilisensikan di bawah MIT License.
+
+## Kontribusi
+
+Silakan fork repositori ini dan kirim pull request jika Anda memiliki perbaikan atau peningkatan. Jika ada saran atau ide, Anda juga dapat membuka *issue* untuk berdiskusi bersama.
+
+Proyek ini dibuat dengan fokus pada kesederhanaan dan efisiensi, sangat cocok untuk memulai proyek aplikasi web atau prototipe kecil dengan cepat dan ringan.
+
+
